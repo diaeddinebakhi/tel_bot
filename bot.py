@@ -15,7 +15,7 @@ logging.basicConfig(
 
 TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
 CHAT_ID = os.environ["CHAT_ID"]                 # string; group ids look like -100...
-EVERY_MINUTES = int(os.environ.get("EVERY_MINUTES", "3"))  # default 3 hours
+EVERY_MINUTES = int(os.environ.get("EVERY_MINUTES", "20"))  # default 3 hours
 PORT = int(os.environ.get("PORT", "5000"))      # Render provides $PORT
 
 TG_API_URL = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"

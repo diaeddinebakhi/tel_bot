@@ -15,9 +15,9 @@ logging.basicConfig(
     format="%(asctime)s | %(levelname)s | %(message)s"
 )
 
-TELEGRAM_BOT_TOKEN = os.environ["7988613015:AAHRZC9BSl68CiD6pqb91bH88h3n3x7xxeo"]
-CHAT_ID = os.environ["1931699367"]                 # string; group ids look like -100...
-GROQ_API_KEY = os.environ["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"]
+TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
+CHAT_ID = os.environ["CHAT_ID"]                 # string; group ids look like -100...
+GROQ_API_KEY = os.environ["GROQ_API_KEY"]
 EVERY_MINUTES = int(os.environ.get("EVERY_MINUTES", "180"))  # default 3 hours
 PORT = int(os.environ.get("PORT", "5000"))      # Render provides $PORT
 

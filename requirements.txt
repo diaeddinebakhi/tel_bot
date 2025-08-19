@@ -2,3 +2,4 @@ python-telegram-bot==20.6
 schedule==1.2.1
 groq
 Flask
+requests

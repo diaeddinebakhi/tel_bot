@@ -15,7 +15,7 @@ logging.basicConfig(
 
 TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
 CHAT_ID = os.environ["CHAT_ID"]                 # string; group ids look like -100...
-EVERY_MINUTES = int(os.environ.get("EVERY_MINUTES", "3"))  # default 3 hours
+EVERY_MINUTES = int(os.environ.get("EVERY_MINUTES", "60"))  # default 3 hours
 PORT = int(os.environ.get("PORT", "5000"))      # Render provides $PORT
 
 TG_API_URL = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
@@ -24,14 +24,86 @@ TG_API_URL = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
 # You can add as many lessons as you want here
 lessons = [
     {
-        "part1": "📘 *Introduction: Cosine Similarity*\n\nCosine similarity measures how similar two vectors are based on the angle between them. Think of it as how much two arrows point in the same direction, ignoring their length.",
-        "part2": "📐 *Math Behind Cosine Similarity*\n\nFormula:\n\ncos(θ) = (A · B) / (||A|| ||B||)\n\nWhere:\n- A · B = dot product of vectors\n- ||A|| = magnitude of A\n- ||B|| = magnitude of B\n\ncos(θ)=1 → same direction, cos(θ)=0 → perpendicular, cos(θ)=-1 → opposite.",
-        "part3": "🔧 *Real-Life Example*\n\nComparing two documents:\n- Doc1: 'I love data science and machine learning'\n- Doc2: 'Machine learning is amazing for data-driven science'\n\nAfter vectorization → cosine similarity ≈ 0.92 → very similar!\n\nThis is why search engines and RAG systems use cosine similarity."
+        "part1": """📘 *Introduction: Cosine Similarity*
+
+Cosine similarity is a fundamental concept in machine learning and natural language processing.  
+It measures how similar two vectors are based on the *angle* between them, while ignoring their length (magnitude).  
+
+💡 Intuition:  
+Imagine two arrows starting from the same point. If they point in exactly the same direction, they are *very similar* (cosine = 1). If they are perpendicular, they are completely unrelated (cosine = 0). If they point in opposite directions, they are negatively related (cosine = -1).
+
+This makes cosine similarity especially useful when comparing text embeddings, because documents can have different lengths, but still have very similar meanings.""",
+
+        "part2": """📐 *Math Behind Cosine Similarity*
+
+The formula for cosine similarity between two vectors **A** and **B** is:
+
+cos(θ) = (A · B) / (||A|| ||B||)
+
+Where:
+- **A · B** is the dot product of A and B  
+- **||A||** is the magnitude (length) of A  
+- **||B||** is the magnitude of B  
+- **θ** is the angle between the vectors  
+
+👉 Properties:
+- cos(θ) = 1 → Vectors are identical in direction  
+- cos(θ) = 0 → Vectors are orthogonal (no similarity)  
+- cos(θ) = -1 → Vectors are opposite  
+
+Unlike Euclidean distance, cosine similarity doesn’t care about how *long* the vectors are, just whether they point in a similar direction. That’s why it’s so powerful in text comparison!""",
+
+        "part3": """🌍 *Example & Real-Life Application*
+
+Let’s compare two short documents:
+
+Doc1: "I love machine learning and artificial intelligence."  
+Doc2: "Artificial intelligence and machine learning are amazing fields."
+
+Even though the exact words differ slightly, the *meaning* is nearly the same.  
+When we represent both documents as word embeddings (high-dimensional vectors) and compute cosine similarity, the result will be very close to **1.0**, meaning they are highly similar.
+
+🔧 Real-World Applications:
+- **Search Engines:** Ranking documents by similarity to a query.  
+- **Chatbots:** Matching user questions to stored FAQ answers.  
+- **Recommendation Systems:** Suggesting items similar to what you like.  
+- **Plagiarism Detection:** Identifying text with overlapping meaning, not just exact wording.  
+
+✅ Cosine similarity is the backbone of modern *semantic search* and RAG (Retrieval-Augmented Generation) systems."""
     },
     {
-        "part1": "📘 *Introduction: Euclidean Distance*\n\nEuclidean distance is the ordinary straight-line distance between two points in space.",
-        "part2": "📐 *Math Behind Euclidean Distance*\n\nFor 2D points A(x1, y1), B(x2, y2):\n\nd(A,B) = sqrt((x2-x1)^2 + (y2-y1)^2)\n\nIn n dimensions:\n\nd(A,B) = sqrt( Σ (ai - bi)^2 )",
-        "part3": "🔧 *Real-Life Example*\n\nIf A=(1,2) and B=(4,6):\n\nd = sqrt((4-1)^2 + (6-2)^2) = sqrt(9+16) = 5\n\nUsed in clustering (K-Means) to group similar data points."
+        "part1": """📘 *Introduction: Euclidean Distance*
+
+Euclidean distance is the most basic and intuitive measure of distance.  
+It represents the straight-line distance between two points in space.  
+
+Think of how you would measure the distance between two points on a piece of paper using a ruler. That’s exactly what Euclidean distance does.""",
+
+        "part2": """📐 *Math Behind Euclidean Distance*
+
+For two points A(x1, y1) and B(x2, y2) in 2D space, the distance is:
+
+d(A,B) = sqrt((x2 - x1)^2 + (y2 - y1)^2)
+
+In n-dimensional space, the formula generalizes to:
+
+d(A,B) = sqrt( Σ (ai - bi)^2 ), where i runs from 1 to n.
+
+👉 Intuition:  
+It’s like applying the Pythagorean theorem in higher dimensions.  
+This is why Euclidean distance is often called "L2 norm" in machine learning.""",
+
+        "part3": """🌍 *Example & Real-Life Application*
+
+Example: A = (1,2), B = (4,6)  
+d = sqrt((4-1)^2 + (6-2)^2) = sqrt(9 + 16) = sqrt(25) = 5
+
+Real-World Applications:
+- **Clustering (K-Means):** Assigning data points to the nearest cluster center.  
+- **Nearest Neighbors Search:** Finding the closest data points in classification/regression.  
+- **Computer Vision:** Comparing image feature vectors.  
+
+✅ Euclidean distance is simple yet extremely powerful in geometry, machine learning, and data analysis."""
     }
 ]
 
